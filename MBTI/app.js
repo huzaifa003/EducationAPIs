@@ -32,7 +32,7 @@ questions = [
     { "number": 22, "question": "DO YOU USUALLY", "A": "VALUE EMOTION MORE THAN LOGIC", "B": "VALUE LOGIC MORE THAN FEELINGS?" },
     { "number": 23, "question": "WOULD YOU RATHER HAVE AS A FRIEND", "A": "SOMEONE WHO IS ALWAYS COMING UP WITH NEW IDEAS", "B": "SOMEONE WHO HAS BOTH FEET ON THE GROUND?" },
     { "number": 24, "question": "CAN THE NEW PEOPLE YOU MEET TELL WHAT YOU ARE INTERESTED IN", "A": "RIGHT AWAY", "B": "ONLY AFTER THEY REALLY GET TO KNOW YOU?" },
-    { "number": 25, "question": "IN YOUR DAILY WORK, DO YOU", "A": "USUALLY PLAN YOUR WORK SO YOU WON’T NEED TO WORK UNDER PRESSURE", "B": "RATHER ENJOY AN EMERGENCY THAT MAKES YOU WORK AGAINST TIME", "C": "HATE TO WORK UNDER PRESSURE?" },
+    { "number": 25, "question": "IN YOUR DAILY WORK, DO YOU", "A": "USUALLY PLAN YOUR WORK SO YOU WON’T NEED TO WORK UNDER PRESSURE", "B": "RATHER ENJOY AN EMERGENCY THAT MAKES YOU WORK AGAINST TIME" },
     { "number": 26, "question": "DO YOU USUALLY", "A": "SHOW YOUR FEELINGS FREELY", "B": "KEEP YOUR FEELINGS TO YOURSELF?" },
 
     { "number": 27, "question": "Which word would you choose?", "A": "SCHEDULED", "B": "UNPLANNED" },
@@ -61,109 +61,194 @@ questions = [
     { "number": 50, "question": "Which word would you choose?", "A": "HARD", "B": "SOFT" }
 ]
 
-const answers = [
-    {"3A": [2, "E"]},
-    {"3B": [2, "S"]},
-    {"2A": [2, "N"]},
-    {"2B": [2, "F"]},
-    {"4B": [2, "E"]},
-    {"4A": [1, "S"]},
-    {"1A": [2, "S"]},
-    {"1B": [2, "F"]},
-    {"6A": [2, "E"]},
-    {"6B": [1, "S"]},
-    {"5B": [1, "S"]},
-    {"5A": [1, "N"]},
-    {"14B": [2, "E"]},
-    {"14A": [1, "S"]},
-    {"7A": [1, "S"]},
-    {"7B": [1, "N"]},
-    {"9A": [2, "E"]},
-    {"9B": [1, "S"]},
-    {"10A": [1, "S"]},
-    {"10B": [2, "N"]},
-    {"22B": [2, "F"]},
-    {"22A": [2, "E"]},
-    {"7C": [1, "S"]},
-    {"13A": [1, "S"]},
-    {"13B": [2, "N"]},
-    {"12A": [1, "N"]},
-    {"12B": [2, "F"]},
-    {"30A": [2, "F"]},
-    {"30B": [1, "E"]},
-    {"8A": [1, "S"]},
-    {"8B": [2, "S"]},
-    {"16A": [2, "N"]},
-    {"16B": [2, "N"]},
-    {"32A": [1, "E"]},
-    {"32B": [1, "E"]},
-    {"11A": [2, "S"]},
-    {"11B": [1, "S"]},
-    {"21A": [2, "N"]},
-    {"21B": [2, "N"]},
-    {"20A": [2, "F"]},
-    {"20B": [2, "F"]},
-    {"33B": [2, "E"]},
-    {"33A": [0, "S"]},
-    {"17A": [2, "S"]},
-    {"17B": [2, "N"]},
-    {"24A": [1, "N"]},
-    {"24B": [1, "F"]},
-    {"23B": [2, "F"]},
-    {"23A": [1, "F"]},
-    {"37A": [1, "F"]},
-    {"37B": [2, "F"]},
-    {"18A": [1, "F"]},
-    {"18B": [1, "F"]},
-    {"28A": [2, "J"]},
-    {"28B": [1, "J"]},
-    {"39A": [1, "J"]},
-    {"39B": [1, "J"]},
-    {"19A": [1, "J"]},
-    {"19B": [1, "J"]},
-    {"29B": [2, "J"]},
-    {"29A": [2, "J"]},
-    {"31B": [2, "J"]},
-    {"31A": [0, "J"]},
-    {"40B": [2, "J"]},
-    {"40A": [1, "J"]},
-    {"36B": [2, "J"]},
-    {"36A": [1, "J"]},
-    {"35A": [2, "J"]},
-    {"35B": [1, "J"]},
-    {"44A": [1, "J"]},
-    {"44B": [2, "J"]},
-    {"43B": [1, "J"]},
-    {"43A": [1, "J"]},
-    {"38B": [2, "J"]},
-    {"38A": [0, "J"]},
-    {"46A": [2, "J"]},
-    {"46B": [0, "J"]},
-    {"27A": [2, "J"]},
-    {"27B": [2, "J"]},
-    {"42A": [1, "J"]},
-    {"42B": [2, "J"]},
-    {"47B": [2, "J"]},
-    {"47A": [1, "J"]},
-    {"34A": [2, "J"]},
-    {"34B": [2, "J"]},
-    {"45B": [2, "J"]},
-    {"45A": [0, "J"]},
-    {"49A": [2, "J"]},
-    {"49B": [1, "J"]},
-    {"41A": [2, "J"]},
-    {"41B": [2, "J"]},
-    {"48A": [1, "J"]},
-    {"48B": [1, "J"]},
-    {"50A": [2, "J"]},
-    {"50B": [0, "J"]}
-]
+const keys = {
+    "3A": [2, "E"],
+    "26A": [1, "E"],
+    "26B": [0, "I"],
+
+    "3B": [2, "S"],
+    "2A": [2, "N"],
+    "2B": [2, "F"],
+    "4B": [2, "E"],
+    "4A": [1, "S"],
+    "1A": [2, "S"],
+    "1B": [2, "F"],
+    "6A": [2, "E"],
+    "6B": [1, "S"],
+    "5B": [1, "S"],
+    "5A": [1, "N"],
+    "14B": [2, "E"],
+    "14A": [1, "S"],
+    "7A": [1, "S"],
+    "7B": [1, "N"],
+    "9A": [2, "E"],
+    "9B": [1, "S"],
+    "10A": [1, "S"],
+    "10B": [2, "N"],
+    "22B": [2, "F"],
+    "22A": [2, "E"],
+    "7C": [1, "S"],
+    "13A": [1, "S"],
+    "13B": [2, "N"],
+    "12A": [1, "N"],
+    "12B": [2, "F"],
+    "30A": [2, "F"],
+    "30B": [1, "E"],
+    "8A": [1, "S"],
+    "8B": [2, "S"],
+    "16A": [2, "N"],
+    "16B": [2, "N"],
+    "32A": [1, "E"],
+    "32B": [1, "E"],
+    "11A": [2, "S"],
+    "11B": [1, "S"],
+    "21A": [2, "N"],
+    "21B": [2, "N"],
+    "20A": [2, "F"],
+    "20B": [2, "F"],
+    "33B": [2, "E"],
+    "33A": [0, "S"],
+    "17A": [2, "S"],
+    "17B": [2, "N"],
+    "24A": [1, "N"],
+    "24B": [1, "F"],
+    "23B": [2, "F"],
+    "23A": [1, "F"],
+    "37A": [1, "F"],
+    "37B": [2, "F"],
+    "18A": [1, "F"],
+    "18B": [1, "F"],
+    "28A": [2, "J"],
+    "28B": [1, "J"],
+    "39A": [1, "J"],
+    "39B": [1, "J"],
+    "19A": [1, "J"],
+    "19B": [1, "J"],
+    "29B": [2, "J"],
+    "29A": [2, "J"],
+    "31B": [2, "J"],
+    "31A": [0, "J"],
+    "40B": [2, "J"],
+    "40A": [1, "J"],
+    "36B": [2, "J"],
+    "36A": [1, "J"],
+    "35A": [2, "J"],
+    "35B": [1, "J"],
+    "44A": [1, "J"],
+    "44B": [2, "J"],
+    "43B": [1, "J"],
+    "43A": [1, "J"],
+    "38B": [2, "J"],
+    "38A": [0, "J"],
+    "46A": [2, "J"],
+    "46B": [0, "J"],
+    "27A": [2, "J"],
+    "27B": [2, "J"],
+    "42A": [1, "J"],
+    "42B": [2, "J"],
+    "47B": [2, "J"],
+    "47A": [1, "J"],
+    "34A": [2, "J"],
+    "34B": [2, "J"],
+    "45B": [2, "J"],
+    "45A": [0, "J"],
+    "49A": [2, "J"],
+    "49B": [1, "J"],
+    "41A": [2, "J"],
+    "41B": [2, "J"],
+    "48A": [1, "J"],
+    "48B": [1, "J"],
+    "50A": [2, "J"],
+    "50B": [0, "J"],
+    "25A": [1, "J"],
+    "25C": [0, "J"],
+
+    "25B": [1, "P"],
+    "15A": [0, "N"],
+    "15B": [1, "S"],    
+
+
+
+
+}
+
+const personalityData ={
+    "E": "Extraverted (E) – prefer group activities, think while speaking, get energized by social interaction.",
+    "I": "Introverted (I) – prefer solitary activities, think before speaking, get exhausted by social interaction.",
+
+    "N": "Intuitive (N) – imaginative, rely on their intuition, absorbed in ideas, focus on what might happen.",
+    "S": "Sensing (S) – down-to-earth, rely on their senses, absorbed in practical matters, focus on what has happened.",
+
+    "T": "Thinking (T) - tough, follow their minds, focus on objectivity and rationality",
+    "F": "Feeling (F) – sensitive, follow their hearts, focus on harmony and cooperation",
+
+    "J": "Judging (J) – decisive, prefer clear rules and guidelines, see deadlines as sacred, seek closure.",
+    "P": "Perceiving (P) – very good at improvising, prefer keeping their options open, relaxed about their work, seek freedom"
+}
+
+function choosePersonality(arr) {
+    if (Object.values(arr)[1] >= Object.values(arr)[0]){
+        return 1;
+    }
+    return 0;
+}
 
 // GET request to retrieve all users
 app.get('/mbti/questions', (req, res) => {
     res.json(questions);
 });
 
+app.post("/mbti", (req, res) => {
+
+    const answers = req.body.answers;
+    console.log(answers);
+    const ei = { "E": 0, "I": 0 };
+    const sn = { "S": 0, "N": 0 };
+    const tf = { "T": 0, "F": 0 };
+    const jp = { "J": 0, "P": 0 };
+
+    const mbti = { "E": 0, "I": 0, "S": 0, "N": 0, "T": 0, "F": 0, "J": 0, "P": 0 }
+
+    answers.forEach(element => {
+        // console.log(keys);
+        // console.log(element);
+        let key;
+        if (element in keys) {
+            key = keys[element]
+            const letter = key[1];
+            const number = key[0];
+            // console.log(letter);
+            mbti[letter] += number;
+            
+            
+        }
+        else { console.log(element +  "Not present but proceeding"); }
+
+
+    });
+
+    ei['E'] = mbti['E']
+    ei['I'] = mbti['I']
+
+    sn['S'] = mbti['S']
+    sn['N'] = mbti['N']
+
+    tf['T'] = mbti['T']
+    tf['F'] = mbti['F']
+
+    jp['J'] = mbti['J']
+    jp['P'] = mbti['P']
+
+    const first = Object.keys(ei)[choosePersonality(ei)]
+    const second = Object.keys(sn)[choosePersonality(sn)]
+    const third = Object.keys(tf)[choosePersonality(tf)]
+    const fourth = Object.keys(jp)[choosePersonality(jp)]
+
+    const personality = first+second+third+fourth;
+    const personalityDetails = personalityData[first] + personalityData[second] + personalityData[third] + personalityData[fourth]
+    
+    res.json([ei,sn,tf,jp, first, second, third, fourth, personalityData[first], personalityData[second], personalityData[third], personalityData[fourth] ]);
+})
 
 // Start the server
 app.listen(port, () => {
