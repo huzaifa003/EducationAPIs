@@ -165,14 +165,15 @@ const keys = {
 
     "25B": [1, "P"],
     "15A": [0, "N"],
-    "15B": [1, "S"],    
+    "15B": [1, "S"],
 
 
 
 
 }
 
-const personalityData ={
+
+const personalityData = {
     "E": "Extraverted (E) – prefer group activities, think while speaking, get energized by social interaction.",
     "I": "Introverted (I) – prefer solitary activities, think before speaking, get exhausted by social interaction.",
 
@@ -186,8 +187,28 @@ const personalityData ={
     "P": "Perceiving (P) – very good at improvising, prefer keeping their options open, relaxed about their work, seek freedom"
 }
 
+const careers = {
+    "ISTJ": ["Accountant", "Auditor", "Project Manager", "Computer Programmer", "Data Analyst", "Police Officer", "Civil Engineer", "Financial Analyst"],
+    "ISFJ": ["Nurse", "Teacher", "Librarian", "Social Worker", "Office Manager", "Counselor", "Dental Hygienist", "Veterinarian"],
+    "INFJ": ["Psychologist", "Counselor", "Social Worker", "Human Resources Manager", "Writer", "Artist", "Graphic Designer", "Librarian"],
+    "INTJ": ["Scientist", "Engineer", "Architect", "IT Consultant", "Researcher", "Computer Programmer", "Financial Analyst", "Strategic Planner"],
+    "ISTP": ["Mechanic", "Engineer", "Pilot", "Carpenter", "Forester", "Police Officer", "Firefighter", "Paramedic"],
+    "ISFP": ["Artist", "Musician", "Graphic Designer", "Photographer", "Interior Designer", "Chef", "Counselor", "Veterinarian"],
+    "INFP": ["Writer", "Counselor", "Psychologist", "Social Worker", "Graphic Designer", "Librarian", "Artist", "Musician"],
+    "INTP": ["Scientist", "Software Developer", "Architect", "Engineer", "Mathematician", "Researcher", "University Professor", "Technical Writer"],
+    "ESTP": ["Salesperson", "Entrepreneur", "Police Officer", "Paramedic", "Firefighter", "Real Estate Agent", "Sports Coach", "Pilot"],
+    "ESFP": ["Actor", "Dancer", "Singer", "Event Planner", "Sales Representative", "Fashion Designer", "Chef", "Paramedic"],
+    "ENFP": ["Teacher", "Counselor", "Public Relations Specialist", "Actor", "Writer", "Journalist", "Event Planner", "Social Worker"],
+    "ENTP": ["Entrepreneur", "Lawyer", "Psychologist", "Engineer", "Scientist", "Marketing Manager", "Venture Capitalist", "Politician"],
+    "ESTJ": ["Manager", "Business Administrator", "Police Officer", "Military Officer", "Judge", "Financial Advisor", "Civil Engineer", "Accountant"],
+    "ESFJ": ["Nurse", "Teacher", "HR Specialist", "Event Planner", "Sales Representative", "Social Worker", "Customer Service Representative", "Librarian"],
+    "ENFJ": ["Counselor", "Psychologist", "Social Worker", "HR Specialist", "Event Planner", "Public Relations Specialist", "Human Resources Manager", "Teacher"],
+    "ENTJ": ["CEO", "Lawyer", "Judge", "Entrepreneur", "Financial Advisor", "Politician", "Marketing Manager", "Management Consultant"]
+}
+
+
 function choosePersonality(arr) {
-    if (Object.values(arr)[1] >= Object.values(arr)[0]){
+    if (Object.values(arr)[1] >= Object.values(arr)[0]) {
         return 1;
     }
     return 0;
@@ -219,10 +240,10 @@ app.post("/mbti", (req, res) => {
             const number = key[0];
             // console.log(letter);
             mbti[letter] += number;
-            
-            
+
+
         }
-        else { console.log(element +  "Not present but proceeding"); }
+        else { console.log(element + "Not present but proceeding"); }
 
 
     });
@@ -244,10 +265,11 @@ app.post("/mbti", (req, res) => {
     const third = Object.keys(tf)[choosePersonality(tf)]
     const fourth = Object.keys(jp)[choosePersonality(jp)]
 
-    const personality = first+second+third+fourth;
-    const personalityDetails = personalityData[first] + personalityData[second] + personalityData[third] + personalityData[fourth]
-    
-    res.json([ei,sn,tf,jp, first, second, third, fourth, personalityData[first], personalityData[second], personalityData[third], personalityData[fourth] ]);
+    const personality = first + second + third + fourth;
+    const personalityDetails = personalityData[first] + "\n" +  personalityData[second] + "\n" + personalityData[third]+ "\n" + personalityData[fourth]
+
+    const career = careers[personality];
+    res.json({personality, personalityDetails, career});
 })
 
 // Start the server
