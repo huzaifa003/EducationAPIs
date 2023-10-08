@@ -198,8 +198,7 @@ app.post('/disc', (req, res) => {
         }
     }
 
-    console.log(values.sort());
-    const maxInd = values.indexOf(values.sort()[3]);
+    const maxInd = values.indexOf(Math.max(...values));
     let maxValue;
     if (maxInd == 0){
         maxValue = "D"
@@ -217,7 +216,7 @@ app.post('/disc', (req, res) => {
     console.log(maxInd);
     console.log(maxValue)
     console.log(careers[maxValue])
-    res.send(careers[maxValue]);
+    res.send({"personality" : maxValue,  "careers" : careers[maxValue]});
 });
 
 // Start the server
