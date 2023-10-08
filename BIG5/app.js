@@ -111,13 +111,51 @@ const questions = {
     48: "I am exacting in my work.",
     49: "I often feel blue.",
     50: "I am full of ideas."
-  };
-  
+};
 
-const ptest = {
-    "positive": ["is talkative", "Does a through job", "Is depressed,blue", "Is original, comes up with new ideas", "is helpful and unselfish with others", "Is curious about many different things", "Is full of energy", "Is a reliable worker", "Can be tense", "Is ingenious, a deep thinker", 'Generates a lot of enthusiasm', "Has a forgiving nature", "Worries a lot", "Has an active imagination", "Is generally trusting", "is inventive", "Has an assertive personality", "Perserves until the task is finished", "Can be moody", "Values artistic,aesthetic experiences", "Is considerate and kind to almost everyone", "Does things efficiently", "Is outgoing,sociable", "Makes plans and follows through with them", "Gets nervous easily", "Likes to reflect, play with ideas", "Likes to cooperate with others", "Is sophisticated in art,music or literature"],
-    "negative": ["Tends to find fault with others", "Is reserved", "Can be somewhat careless", "Is relaxed,handles stress well", "c", "Tends to be disorganized", "Tends to be quiet", "Tends to be lazy", "Is emotionally stable,not easily upset", "Can be cold and aloof", "Is sometimes shy, inhibited", "Remains calm in tense situations", "Prefers work that is routine", "Is sometimes rude to others", "Has few artistic interests", "Likes to cooperate with others", "Is easily distracted"]
-}
+
+const careerSuggestions = {
+    "Openness": [
+        "Creative professions such as artists, writers, musicians, and designers.",
+        "Scientific research and innovation.",
+        "Counseling or therapy where creative problem-solving is required.",
+        "Entrepreneurship for innovative and original business ideas."
+    ],
+    "Conscientiousness": [
+        "Accountant or Financial Analyst.",
+        "Project Manager or Team Leader.",
+        "Lawyer or Legal Consultant.",
+        "Engineer or Architect.",
+        "Healthcare Administrator."
+    ],
+    "Extroversion": [
+        "Sales and Marketing roles.",
+        "Public Relations Specialist.",
+        "Event Planner or Coordinator.",
+        "Teacher or Trainer.",
+        "Hospitality and Tourism industry jobs."
+    ],
+    "Agreeableness": [
+        "Social Worker or Counselor.",
+        "Nurse or Healthcare Provider.",
+        "Human Resources Specialist.",
+        "Non-profit or Charity work.",
+        "Mediator or Conflict Resolution Specialist."
+    ],
+    "Neurotisicsm": [
+        "Therapist or Counselor.",
+        "Yoga Instructor or Meditation Coach.",
+        "Researcher studying mental health or psychological disorders.",
+        "Laboratory Technician where attention to detail and precision is crucial.",
+        "Librarian or Archivist."
+    ]
+};
+
+
+
+
+
+
 // EACNO
 const ptestAns = [
     {
@@ -137,6 +175,10 @@ const ptestAns = [
         "ans": "N"
     }
 ]
+
+app.get("/big5/questions", (req, res) => {
+    res.json(questions);
+})
 app.get('/personalityTest', (req, res) => {
     let totalScore = 0;
     // first index is for normal scoring and 2nd index is for reverse scoring
@@ -167,6 +209,63 @@ app.get('/personalityTest', (req, res) => {
     };
     res.json(responseObj)
 });
+
+app.post("/big5", (req, res) => {
+
+    const answers = req.body.answers;
+    // const sorted = answers.sort();
+    const answerKey = {}
+    answers.forEach(answer => {
+        let no = answer.match(/(\d+)/)[0];
+        answerKey[no] = keys[answer];
+    })
+    const extroversion = 20 + answerKey[1] - answerKey[6] + answerKey[11] - answerKey[16] + answerKey[21] - answerKey[26] + answerKey[32] - answerKey[36] + answerKey[41] - answerKey[46];
+
+    const agreeableness = 14 - answerKey[2] + answerKey[7] - answerKey[12] + answerKey[17] - answerKey[22] + answerKey[27] - answerKey[32] + answerKey[37] + answerKey[42] + answerKey[47];
+
+    const conscientiousness = 14 + answerKey[3] - answerKey[8] + answerKey[13] - answerKey[18] + answerKey[23] - answerKey[28] + answerKey[33] - answerKey[38] + answerKey[43] + answerKey[48];
+
+    const neurotisicsm = 38 - answerKey[4] + answerKey[9] - answerKey[14] + answerKey[19] - answerKey[24] - answerKey[29] - answerKey[34] - answerKey[39] - answerKey[44] - answerKey[49];
+
+    const openness = 8 + answerKey[5] - answerKey[10] + answerKey[15] - answerKey[20] + answerKey[25] - answerKey[30] + answerKey[35] + answerKey[40] + answerKey[45] + answerKey[50];
+
+    const InverseMapping = {
+        extroversion: "Extroversion",
+        agreeableness: "Agreeableness",
+        conscientiousness: "Conscientiousness",
+        neurotisicsm: "Neurotisicsm",
+        openness: "Openness"
+    }
+    const mapping = { "extroversion": extroversion, "agreeableness": agreeableness, "consceientiousness": conscientiousness, "neurotisicsm": neurotisicsm, "openness": openness }
+    
+
+    const personalityScores = [extroversion,agreeableness,conscientiousness,neurotisicsm,openness];
+    
+    const maxInd = personalityScores.indexOf(Math.max(...personalityScores))
+    console.log(personalityScores)
+    console.log(maxInd)
+    let personality;
+    if (maxInd == 0){
+        personality = "Extroversion"
+    }
+    else if (maxInd == 1){
+        personality = "Agreeableness"
+    }
+    else if (maxInd == 2){
+        personality = "Conscientiousness"
+    }
+    else if (maxInd == 3){
+        personality = "Neurotisicsm"
+    }
+    else if (personality == 4){
+        personality = "Openness"
+    }
+    
+
+    const careerMap = careerSuggestions[personality]
+    console.log(careerSuggestions['Neurotisicsm'])
+    res.send(200, { personality,  careerMap });
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
